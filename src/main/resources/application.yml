@@ -10,6 +10,6 @@ spring:
       enabled: false
   thymeleaf:
     prefix: classpath:/templates
-anti-duplicate-commit:
+anti-duplicate-commit: 
   message: 页面超时请刷新重试!
   
