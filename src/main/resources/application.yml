@@ -1,0 +1,15 @@
+server:
+  port: 8400
+  servlet:
+    context-path: /commitdemo
+spring:
+  application:
+    name: sso-test-site
+  devtools:
+    restart:
+      enabled: false
+  thymeleaf:
+    prefix: classpath:/templates
+anti-duplicate-commit:
+  message: 页面超时请刷新重试!
+  

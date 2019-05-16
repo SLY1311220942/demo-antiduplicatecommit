@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改</title>
+	</head>
+	<script>
+		var webRoot = '[[${#httpServletRequest.getContextPath()}]]';
+	</script>
+
+	<body>
+		<input type="hidden" id="DEMO_UPDATE_TOKEN" name="DEMO_UPDATE_TOKEN" th:value="${DEMO_UPDATE_TOKEN}" />
+		<button onclick="update();">修改</button>
+	</body>
+	<script th:src="@{/resource/common.js}"></script>
+	<script th:src="@{/resource/jquery.min.js}"></script>
+	<script>
+		function update() {
+			$.ajax({
+				type: "post",
+				url: webRoot + "/demo/demoUpdateSubmit",
+				dataType: "json",
+				data: {
+					DEMO_UPDATE_TOKEN: $.trim($("#DEMO_UPDATE_TOKEN").val())
+				},
+				success: function(data) {
+					if(data.status == 200) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+					}
+				}
+			});
+		}
+	</script>
+
+</html>

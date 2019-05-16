@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>demo</title>
+	</head>
+	<script>
+		var webRoot = '[[${#httpServletRequest.getContextPath()}]]';
+	</script>
+
+	<body>
+		<input type="hidden" id="DEMO_ADD_TOKEN" name="DEMO_ADD_TOKEN" th:value="${DEMO_ADD_TOKEN}" />
+		<input type="hidden" id="DEMO_UPDATE_TOKEN" name="DEMO_UPDATE_TOKEN" th:value="${DEMO_UPDATE_TOKEN}" />
+		<input type="hidden" id="DEMO_DELETE_TOKEN" name="DEMO_DELETE_TOKEN" th:value="${DEMO_DELETE_TOKEN}" />
+		
+		<button onclick="toAdd();">新增</button>
+		<button onclick="toUpdate();">修改</button>
+		<button onclick="del();">删除</button>
+	</body>
+	<script th:src="@{/resource/common.js}"></script>
+	<script th:src="@{/resource/jquery.min.js}"></script>
+	<script>
+		function toAdd() {
+			window.location.href = webRoot + "/demo/toAdd";
+		}
+
+		function toUpdate() {
+			window.location.href = webRoot + "/demo/toUpdate";
+		}
+
+		function del() {
+			$.ajax({
+				type: "post",
+				url: webRoot + "/demo/demoDeleteSubmit",
+				dataType: "json",
+				data: {
+					//DEMO_DELETE_TOKEN: $.trim($("#DEMO_DELETE_TOKEN").val())
+				},
+				success: function(data) {
+					$("#DEMO_DELETE_TOKEN").val(data.DEMO_DELETE_TOKEN);
+					if(data.status == 200) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+					}
+				}
+			});
+		}
+	</script>
+
+</html>

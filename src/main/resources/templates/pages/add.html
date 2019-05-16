@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新增</title>
+	</head>
+	<script>
+		var webRoot = '[[${#httpServletRequest.getContextPath()}]]';
+	</script>
+	<body>
+		<input type="hidden" id="DEMO_ADD_TOKEN" name="DEMO_ADD_TOKEN" th:value="${DEMO_ADD_TOKEN}" />
+		<button onclick="add();">新增</button>
+	</body>
+	<script th:src="@{/resource/common.js}"></script>
+	<script th:src="@{/resource/jquery.min.js}"></script>
+	<script>
+		function add(){
+			$.ajax({
+				type: "post",
+				url: webRoot + "/demo/demoAddSubmit",
+				dataType: "json",
+				data: {
+					DEMO_ADD_TOKEN: $.trim($("#DEMO_ADD_TOKEN").val())
+				},
+				success: function(data) {
+					if(data.status == 200) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+					}
+				}
+			});
+		}
+	</script>
+</html>
