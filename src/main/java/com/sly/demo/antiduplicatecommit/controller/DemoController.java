@@ -38,7 +38,7 @@ public class DemoController {
 	 */
 	@RequestMapping("/toDemo")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN, DemoToken.DEMO_UPDATE_TOKEN,
-			DemoToken.DEMO_DELETE_TOKEN }, isCheckToken = false, isReturnToken = true)
+			DemoToken.DEMO_DELETE_TOKEN }, isReturnToken = true)
 	public String toDemo(HttpServletRequest request, HttpServletResponse response) {
 		return "/pages/demo.html";
 	}
@@ -53,7 +53,7 @@ public class DemoController {
 	 * @time 2019年5月16日
 	 */
 	@RequestMapping("/toAdd")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isCheckToken = false, isReturnToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isReturnToken = true)
 	public String toAdd(HttpServletRequest request, HttpServletResponse response) {
 		return "/pages/add.html";
 	}
@@ -68,7 +68,7 @@ public class DemoController {
 	 * @time 2019年5月16日
 	 */
 	@RequestMapping("/toUpdate")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isCheckToken = false, isReturnToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isReturnToken = true)
 	public String toUpdate(HttpServletRequest request, HttpServletResponse response) {
 		return "/pages/update.html";
 	}
@@ -84,7 +84,7 @@ public class DemoController {
 	 */
 	@ResponseBody
 	@RequestMapping("/demoAddSubmit")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isCheckToken = true, isReturnToken = false)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isCheckToken = true)
 	public Object demoAddSubmit(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
@@ -110,7 +110,7 @@ public class DemoController {
 	 */
 	@ResponseBody
 	@RequestMapping("/demoUpdateSubmit")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isCheckToken = true, isReturnToken = false)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isCheckToken = true)
 	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
