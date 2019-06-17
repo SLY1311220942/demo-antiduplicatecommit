@@ -38,7 +38,7 @@ public class DemoController {
 	 */
 	@RequestMapping("/toDemo")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN, DemoToken.DEMO_UPDATE_TOKEN,
-			DemoToken.DEMO_DELETE_TOKEN }, isReturnToken = true)
+			DemoToken.DEMO_DELETE_TOKEN }, isCheckToken = false)
 	public String toDemo(HttpServletRequest request, HttpServletResponse response) {
 		return "/pages/demo.html";
 	}
@@ -53,7 +53,7 @@ public class DemoController {
 	 * @time 2019年5月16日
 	 */
 	@RequestMapping("/toAdd")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isReturnToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isCheckToken = false)
 	public String toAdd(HttpServletRequest request, HttpServletResponse response) {
 		return "/pages/add.html";
 	}
@@ -68,7 +68,7 @@ public class DemoController {
 	 * @time 2019年5月16日
 	 */
 	@RequestMapping("/toUpdate")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isReturnToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isCheckToken = false)
 	public String toUpdate(HttpServletRequest request, HttpServletResponse response) {
 		return "/pages/update.html";
 	}
@@ -84,7 +84,7 @@ public class DemoController {
 	 */
 	@ResponseBody
 	@RequestMapping("/demoAddSubmit")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isCheckToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isReturnToken = false)
 	public Object demoAddSubmit(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
@@ -110,7 +110,7 @@ public class DemoController {
 	 */
 	@ResponseBody
 	@RequestMapping("/demoUpdateSubmit")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isCheckToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isReturnToken = false)
 	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
@@ -136,7 +136,7 @@ public class DemoController {
 	 */
 	@ResponseBody
 	@RequestMapping("/demoDeleteSubmit")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_DELETE_TOKEN }, isCheckToken = true, isReturnToken = true)
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_DELETE_TOKEN })
 	public Object demoDeleteSubmit(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
