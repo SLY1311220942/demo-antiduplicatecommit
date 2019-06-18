@@ -13,3 +13,7 @@ spring:
 plugin:
   anti-duplicate-commit: 
     message: 页面超时请刷新重试!
+  xss-filter:
+    exclude:
+      exclude-path: /demo/demoUpdateSubmit
+      

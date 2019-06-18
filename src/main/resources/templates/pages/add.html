@@ -21,7 +21,8 @@
 				url: webRoot + "/demo/demoAddSubmit",
 				dataType: "json",
 				data: {
-					DEMO_ADD_TOKEN: $.trim($("#DEMO_ADD_TOKEN").val())
+					DEMO_ADD_TOKEN: $.trim($("#DEMO_ADD_TOKEN").val()),
+					add: 'updateAdd'
 				},
 				success: function(data) {
 					if(data.status == 200) {

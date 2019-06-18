@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sly.demo.antiduplicatecommit.constant.DemoToken;
 import com.sly.plugin.antiduplicatecommit.annotation.AntiDuplicateCommit;
+import com.sly.plugin.xss.properties.XssFilterProperties;
 
 /**
  * 反重复提交测试controller
@@ -26,6 +28,9 @@ import com.sly.plugin.antiduplicatecommit.annotation.AntiDuplicateCommit;
 @RequestMapping("/demo")
 public class DemoController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DemoController.class);
+	
+	@Autowired
+	private XssFilterProperties properties;
 
 	/**
 	 * 跳转到页面顺便设置token
@@ -85,7 +90,7 @@ public class DemoController {
 	@ResponseBody
 	@RequestMapping("/demoAddSubmit")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isReturnToken = false)
-	public Object demoAddSubmit(HttpServletRequest request, HttpServletResponse response) {
+	public Object demoAddSubmit(HttpServletRequest request, HttpServletResponse response,String add) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
 			System.out.println("我是新增业务方法,我执行了!");
@@ -111,7 +116,7 @@ public class DemoController {
 	@ResponseBody
 	@RequestMapping("/demoUpdateSubmit")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isReturnToken = false)
-	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response) {
+	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response,String update) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
 			System.out.println("我是修改业务方法,我执行了!");

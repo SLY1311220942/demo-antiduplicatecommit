@@ -52,10 +52,22 @@
 			<optional>true</optional>
 		</dependency>
 		
+		<!-- fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.51</version>
+		</dependency>
+		
 		
 		<dependency>
 			<groupId>com.sly</groupId>
 			<artifactId>plugin-anti-duplicate-commit</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sly</groupId>
+			<artifactId>plugin-xss-filter</artifactId>
 			<version>1.0</version>
 		</dependency>
 		
