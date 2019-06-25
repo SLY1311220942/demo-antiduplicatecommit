@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sly.demo.antiduplicatecommit.constant.DemoToken;
 import com.sly.plugin.antiduplicatecommit.annotation.AntiDuplicateCommit;
+import com.sly.plugin.validate.annotation.Validate;
+import com.sly.plugin.validate.constraints.Size;
 import com.sly.plugin.xss.properties.XssFilterProperties;
 
 /**
@@ -113,10 +115,12 @@ public class DemoController {
 	 * @author sly
 	 * @time 2019年5月16日
 	 */
+	@Validate
 	@ResponseBody
 	@RequestMapping("/demoUpdateSubmit")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isReturnToken = false)
-	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response,String update) {
+	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response,
+			@Size(max = 5, message = "最大不超过5个字符") String update) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
 			System.out.println("我是修改业务方法,我执行了!");

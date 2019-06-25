@@ -70,6 +70,11 @@
 			<artifactId>plugin-xss-filter</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sly</groupId>
+			<artifactId>plugin-validate</artifactId>
+			<version>1.0</version>
+		</dependency>
 		
 	</dependencies>
 
