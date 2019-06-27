@@ -19,6 +19,8 @@ import com.sly.demo.antiduplicatecommit.model.Business;
 import com.sly.plugin.antiduplicatecommit.annotation.AntiDuplicateCommit;
 import com.sly.plugin.validate.annotation.Valid;
 import com.sly.plugin.validate.annotation.Validate;
+import com.sly.plugin.validate.constraints.NotBlank;
+import com.sly.plugin.validate.constraints.Null;
 
 /**
  * 反重复提交测试controller
@@ -90,7 +92,7 @@ public class DemoController {
 	@ResponseBody
 	@RequestMapping("/demoAddSubmit")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_ADD_TOKEN }, isReturnToken = false)
-	public Object demoAddSubmit(HttpServletRequest request, HttpServletResponse response,@Valid(group = "add") Business business) {
+	public Object demoAddSubmit(HttpServletRequest request, HttpServletResponse response,@Valid("add") Business business) {
 		System.out.println(JSON.toJSONString(business));
 		Map<String, Object> result = new HashMap<>(16);
 		try {
@@ -119,7 +121,7 @@ public class DemoController {
 	@RequestMapping("/demoUpdateSubmit")
 	@AntiDuplicateCommit(keys = { DemoToken.DEMO_UPDATE_TOKEN }, isReturnToken = false)
 	public Object demoUpdateSubmit(HttpServletRequest request, HttpServletResponse response,
-			@Valid(group = "update") Business business) {
+			@Valid("update") Business business) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
 			System.out.println("我是修改业务方法,我执行了!");
@@ -142,10 +144,11 @@ public class DemoController {
 	 * @author sly
 	 * @time 2019年5月16日
 	 */
+	@Validate
 	@ResponseBody
 	@RequestMapping("/demoDeleteSubmit")
-	@AntiDuplicateCommit(keys = { DemoToken.DEMO_DELETE_TOKEN })
-	public Object demoDeleteSubmit(HttpServletRequest request, HttpServletResponse response) {
+	@AntiDuplicateCommit(keys = { DemoToken.DEMO_DELETE_TOKEN },isReturnToken=false)
+	public Object demoDeleteSubmit(HttpServletRequest request, HttpServletResponse response,@NotBlank(message="Id不能为空!") @Null(message="Id必须为空!") String id) {
 		Map<String, Object> result = new HashMap<>(16);
 		try {
 			System.out.println("我是删除业务方法,我执行了!");

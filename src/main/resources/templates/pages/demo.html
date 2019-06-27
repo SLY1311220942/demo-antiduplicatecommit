@@ -35,7 +35,8 @@
 				url: webRoot + "/demo/demoDeleteSubmit",
 				dataType: "json",
 				data: {
-					//DEMO_DELETE_TOKEN: $.trim($("#DEMO_DELETE_TOKEN").val())
+					DEMO_DELETE_TOKEN: $.trim($("#DEMO_DELETE_TOKEN").val())
+					//id: '啊实打实'
 				},
 				success: function(data) {
 					$("#DEMO_DELETE_TOKEN").val(data.DEMO_DELETE_TOKEN);
