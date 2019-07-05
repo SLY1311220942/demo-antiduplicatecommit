@@ -16,4 +16,8 @@ plugin:
   xss-filter:
     exclude:
       exclude-path: /demo/demoUpdateSubmit
+  sensitive-word:
+    word-file-location: sensitiveword.txt
+    inva-char: '@#'
+    
       

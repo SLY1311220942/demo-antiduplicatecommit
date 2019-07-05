@@ -2,6 +2,7 @@ package com.sly.demo.antiduplicatecommit.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.sly.demo.antiduplicatecommit.constant.DemoToken;
 import com.sly.demo.antiduplicatecommit.model.Business;
 import com.sly.plugin.antiduplicatecommit.annotation.AntiDuplicateCommit;
+import com.sly.plugin.sensitiveword.filter.SensitivewordFilter;
 import com.sly.plugin.validate.annotation.Valid;
 import com.sly.plugin.validate.annotation.Validate;
 import com.sly.plugin.validate.constraints.NotBlank;
@@ -32,7 +35,10 @@ import com.sly.plugin.validate.constraints.Null;
 @RequestMapping("/demo")
 public class DemoController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DemoController.class);
-
+	
+	@Autowired
+	private SensitivewordFilter sensitivewordFilter;
+	
 	/**
 	 * 跳转到页面顺便设置token
 	 * 
@@ -160,5 +166,54 @@ public class DemoController {
 			result.put("message", "删除失败!");
 		}
 		return result;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param word
+	 * @return
+	 * @author sly
+	 * @time 2019年7月5日
+	 */
+	@ResponseBody
+	@RequestMapping("/sensitiveWord")
+	public Object demoSensitiveWord(HttpServletRequest request, HttpServletResponse response,String word) {
+		Map<String, Object> result = new HashMap<>(16);
+		try {
+			Set<String> sensitiveWord = sensitivewordFilter.getSensitiveWord(word, SensitivewordFilter.maxMatchType);
+			result.put("status", 200);
+			result.put("message", "敏感词验证成功!");
+			result.put("sensitiveWord", sensitiveWord);
+		} catch (Exception e) {
+			LOGGER.error(ExceptionUtils.getStackTrace(e));
+			result.put("status", 400);
+			result.put("message", "敏感词验证失败!");
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		double baseTotal = 0;
+		double total = 0;
+		double base = 7560;
+		double increase = 1.07;
+		double b = 1.10;
+		int year = 15;
+		for (int i = 0; i < year; i++) {
+			
+			total = total * b + base;
+			System.out.println(total);
+			System.out.println(base);
+			baseTotal += base;
+			System.out.println(baseTotal);
+			base = base * increase;
+			
+		}
+		
+		System.out.println("total = " + total);
+		System.out.println("baseTotal = " + baseTotal);
+		System.out.println("base = " + base );
 	}
 }

@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sly.plugin.antiduplicatecommit.annotation.EnableAntiDuplicateCommit;
+import com.sly.plugin.sensitiveword.annotation.EnableSensitiveWord;
 import com.sly.plugin.validate.annotation.EnableValidate;
 import com.sly.plugin.xss.annotation.EnableXssFilter;
 
@@ -16,6 +17,7 @@ import com.sly.plugin.xss.annotation.EnableXssFilter;
 @EnableAntiDuplicateCommit
 @EnableXssFilter
 @EnableValidate
+@EnableSensitiveWord
 public class Application {
 
 	public static void main(String[] args) {
