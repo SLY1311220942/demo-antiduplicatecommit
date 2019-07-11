@@ -197,23 +197,26 @@ public class DemoController {
 	public static void main(String[] args) {
 		double baseTotal = 0;
 		double total = 0;
-		double base = 7560;
-		double increase = 1.07;
-		double b = 1.10;
+		double base = 48000;
+		double base2 = 48000;
+		double increase = 1.05;
+		double b = 1.20;
 		int year = 15;
+		for (int i = 0; i < year; i++) {
+			base2 = base2 * increase;
+			baseTotal += base2;
+		}
+		
 		for (int i = 0; i < year; i++) {
 			
 			total = total * b + base;
-			System.out.println(total);
-			System.out.println(base);
-			baseTotal += base;
-			System.out.println(baseTotal);
-			base = base * increase;
+			
+			base = base * increase + total * 0.025;
 			
 		}
 		
 		System.out.println("total = " + total);
 		System.out.println("baseTotal = " + baseTotal);
-		System.out.println("base = " + base );
+		System.out.println("base = " + base2 );
 	}
 }

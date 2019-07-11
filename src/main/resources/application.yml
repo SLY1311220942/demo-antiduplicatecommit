@@ -19,5 +19,14 @@ plugin:
   sensitive-word:
     word-file-location: sensitiveword.txt
     inva-char: '@#'
+  email:
+    mail-server-host: smtp.qq.com
+    mail-server-port: 465
+    mail-sender-address: 2567870363@qq.com
+    mail-sender-username: 2567870363@qq.com
+    mail-sender-password: mtwopskdwnjrdhgg
+    mail-sender-nick: SLY
+    ssl: true
+    
     
       
